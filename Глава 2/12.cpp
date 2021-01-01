@@ -2,8 +2,8 @@
 #include <locale>
 
 int main() {
-  //std::locale::global(std::locale("ru_RU.UTF-8"));
-  std::wcout << "Введите число десятичных фунтов: ";
+  std::locale::global(std::locale("ru_RU.UTF-8"));
+  std::wcout << L"Введите число десятичных фунтов: ";
   float money;
   std::cin >> money;
 
@@ -15,6 +15,6 @@ int main() {
   shilling = decfrac * 20;
   pence =  (decfrac* 20 - shilling) * 12;
 
-  std::wcout << "Эквивалентная сумма в старой форме записи: \u00A3" << funt << '.' << shilling << '.' << pence << std::endl;
+  std::wcout << L"Эквивалентная сумма в старой форме записи: \u00A3" << funt << '.' << shilling << '.' << pence << std::endl;
   return 0;
 }
