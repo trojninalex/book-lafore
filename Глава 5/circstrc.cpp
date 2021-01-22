@@ -1,4 +1,4 @@
-#include <curses.h>
+#include "bookcon.h"
 
 struct circle
 {
@@ -11,7 +11,7 @@ struct circle
 void circ_draw(circle c) {
   set_color(c.fillcolor);
   set_fill_style(c.fillstyle);
-  draw_corcle(c.xCo, c.yCo, c.radius);
+  draw_circle(c.xCo, c.yCo, c.radius);
 }
 
 int main() {
