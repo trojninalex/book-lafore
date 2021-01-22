@@ -23,5 +23,6 @@ int main() {
   circ_draw(c2);
   circ_draw(c3);
   set_cursor_pos(1, 25);
+  end_graphics();
   return 0;
 }

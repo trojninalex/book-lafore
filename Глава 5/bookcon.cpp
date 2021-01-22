@@ -10,16 +10,21 @@ void init_graphics() {
   COORD console_size = {80, 25};
   //hConsole = freopen("stream", "rwa", stdout);
   initscr();
+  start_color();
   //SetConsoleScreenBufferSize(hConsole, console_size);
   //hConsole = newwin(0, 0, console_size.X, console_size.Y);
   //SetConsoleTextAttribute(hConsole, (WORD)((0 << 4) | 15));
-
+  
   fill_char = '\xDB';
   clear_screen();
 }
 
 void set_color(color foreground, color background) {
   //SetConsoleTextAttribute(hConsole, (WORD)((background << 4) | foreground));
+  init_pair(9, COLOR_BLUE, COLOR_BLACK);
+  init_pair(10, COLOR_GREEN, COLOR_BLACK);
+  init_pair(12, COLOR_RED, COLOR_BLACK);
+  color_set (foreground, NULL);
 }
 
 void set_cursor_pos(int x, int y) {
@@ -27,7 +32,7 @@ void set_cursor_pos(int x, int y) {
   cursor_pos.X = x - 1;
   cursor_pos.Y = y - 1;
   //setConsoleCursorPosition(hConsole, cursor_pos);
-  move(cursor_pos.X, cursor_pos.Y);
+  move(cursor_pos.Y, cursor_pos.X);
 }
 
 void clear_screen() {
@@ -140,4 +145,8 @@ void set_fill_style(fstyle fs) {
   case X_FILL: fill_char = 'X'; break;
   case O_FILL: fill_char = 'O'; break;
   }
+}
+
+void end_graphics() {
+  endwin();
 }

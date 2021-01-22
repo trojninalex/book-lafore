@@ -29,5 +29,5 @@ void draw_circle(int x, int y, int rad);
 void draw_line(int x1, int y1, int x2, int y2);
 void draw_pyramid(int x1, int y1, int height);
 void set_fill_style(fstyle);
-
+void end_graphics();
 #endif
