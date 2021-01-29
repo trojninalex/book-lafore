@@ -1,4 +1,6 @@
-#include "bookcon.h"
+#include <iostream>
+
+#include "bookgraph.h"
 
 struct circle
 {
@@ -23,6 +25,7 @@ int main() {
   circ_draw(c2);
   circ_draw(c3);
   set_cursor_pos(1, 25);
+  std::cin.get();
   end_graphics();
   return 0;
 }

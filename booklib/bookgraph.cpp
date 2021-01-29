@@ -1,18 +1,16 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "bookcon.h"
+#include "bookgraph.h"
 
 WINDOW* hConsole;
 char fill_char;
 
 void init_graphics() {
   COORD console_size = {80, 25};
-  //hConsole = freopen("stream", "rwa", stdout);
   initscr();
   start_color();
-  //SetConsoleScreenBufferSize(hConsole, console_size);
-  //hConsole = newwin(0, 0, console_size.X, console_size.Y);
+  //hConsole = newwin(console_size.Y, console_size.X, 0, 0);
   //SetConsoleTextAttribute(hConsole, (WORD)((0 << 4) | 15));
   
   fill_char = '\xDB';
@@ -31,15 +29,16 @@ void set_cursor_pos(int x, int y) {
   COORD cursor_pos;
   cursor_pos.X = x - 1;
   cursor_pos.Y = y - 1;
-  //setConsoleCursorPosition(hConsole, cursor_pos);
   move(cursor_pos.Y, cursor_pos.X);
 }
 
 void clear_screen() {
   set_cursor_pos(1, 25);
-  for(int j = 0; j < 25; j++)
+  for(int j = 0; j < 25; j++) {
     addch('\n');
+  }
   set_cursor_pos(1, 1);
+  refresh();
 }
 
 void wait(int milliseconds) {
@@ -77,14 +76,14 @@ void draw_circle(int xC, int yC, int radius) {
   increment = 0.8 / static_cast<double>(radius);
   for (theta = 0; theta <= pi/2; theta+=increment) {
     xF = radius * cos(theta);
-    xN = static_cast<int>(radius * sin(theta) + 0.5);
+    xN = static_cast<int>(xF * 2 / 1);
 
     yN = static_cast<int>(radius * sin(theta) + 0.5);
     x = xC - xN;
     while (x <= xC + xN) {
-      set_cursor_pos(x, yC-yN);
+      set_cursor_pos(x, yC+yN);
       addch(fill_char);
-      set_cursor_pos(x++, yC+yN);
+      set_cursor_pos(x++, yC-yN);
       addch(fill_char);
     }
   }
